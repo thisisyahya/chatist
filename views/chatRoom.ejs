@@ -91,7 +91,6 @@
             width:100vw;
             max-width: calc(100vw - 300px);
             min-height:100%;
-            height:80vh;
             max-height: 600px;
             display: flex;
             flex-direction: column;
@@ -213,13 +212,20 @@
         /* Responsive Design */
 
         @media(width<=746px){
+            .room{
+                height:47px;
+            }
+            .chat{
+                height:calc(100vh - 48px);
+            }
             .chat-left{
                 display: none;
             }
             #chat-container{
+                height:100vh;
                 max-width:calc(100vw - 0px);
-                margin: auto;
-
+                margin: 0;
+                
             }
         }
     </style>
@@ -238,7 +244,7 @@
         var roomIdText = document.getElementById("roomid").innerText;
           
         // Copy to clipboard
-        navigator.clipboard.writeText(`https://chatist-3bw0.onrender.com/selectname?roomname=${roomIdText}`).then(function() {
+        navigator.clipboard.writeText(`http://localhost:3000/selectname?roomname=${roomIdText}`).then(function() {
             alert("Room ID copied: " + roomIdText);
         }).catch(function(err) {
             console.error("Could not copy text: ", err);
@@ -275,9 +281,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
     <script>
-        const socket = io("https://chatist-3bw0.onrender.com", {
-  transports: ["polling"]
-});
+        const socket = io();
         const username = "<%= username %>";
         const roomname = "<%= roomname %>";
 
