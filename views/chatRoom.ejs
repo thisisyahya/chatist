@@ -275,7 +275,9 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
     <script>
-        const socket = io("https://chatist-3bw0.onrender.com/");
+        const socket = io("https://chatist-3bw0.onrender.com", {
+  transports: ["polling"]
+});
         const username = "<%= username %>";
         const roomname = "<%= roomname %>";
 
