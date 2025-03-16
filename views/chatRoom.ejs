@@ -253,7 +253,7 @@
         var roomIdText = document.getElementById("roomid").innerText;
           
         // Copy to clipboard
-        navigator.clipboard.writeText(`http://localhost:3000/selectname?roomname=${roomIdText}`).then(function() {
+        navigator.clipboard.writeText(`https://dashboard.render.com/selectname?roomname=${roomIdText}`).then(function() {
             alert("Room ID copied: " + roomIdText);
         }).catch(function(err) {
             console.error("Could not copy text: ", err);
