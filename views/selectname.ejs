@@ -22,7 +22,8 @@
             text-align: center;
         }
         input {
-            padding: 10px;
+            box-sizing: border-box;
+            padding: 10px 20px;
             width: 100%;
             margin-top: 10px;
             border: 1px solid #ccc;
@@ -63,7 +64,7 @@
         <form id="selectNameForm" method="get">
             <input type="hidden" id="roomname" name="roomname" value="<%= roomname %>">
             <input type="text" id="name" name="username" placeholder="Enter your name">
-            <button type="submit">Proceed</button>
+            <button type="submit">Join</button>
         </form>
     </div>
 
