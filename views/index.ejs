@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+    <style>
+      *{
+        padding:0;
+        margin:0;
+        box-sizing: border-box;
+        font-family: "Poppins";
+      }
+      body {
+      
+        }
+
+        .container {
+            margin: auto;
+            margin-top:80px;
+            background:linear-gradient(135deg, rgb(27, 0, 27), rgb(0, 62, 65));
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            min-width: 300px;
+            box-shadow: 4px 4px 10px rgba(77, 77, 77, 0), -4px -4px 10px rgba(71, 71, 71, 0);
+            color:rgb(34, 34, 34);
+            border:1px solid #cccccca6;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            background: #f0f0f0;
+            color: #fff;
+            outline: none;
+        }
+
+        .rooms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .room {
+            padding: 10px 15px;
+            background: #c1ff9e;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .room:hover {
+            background: #95ff57;
+        }
+
+        @media (max-width: 768px) { /* Tablet */
+            .container {
+                width: 350px;
+            }
+
+            .room {
+                width: 45%;
+            }
+        }
+
+        @media (max-width: 480px) { /* Mobile */
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .room {
+                width: 100%;
+            }
+        }
+
+        .private{
+            width:100vw;
+            padding:80px 0px;
+        }
+        .private-container{
+            max-width:1200px;
+            width:70vw;
+            padding:20px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            gap:12px;
+            border:1px solid #cccccc;
+        }
+      .private-container p{
+        font-size: 32px;
+        
+      }
+      .private-btn{
+        border:none;
+        background:none;
+        width:150px;
+        padding:10px 20px;
+        text-align: center;
+        color:white;
+        background-color: green;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+      .private-btn:hover{
+        cursor: pointer;
+        background-color: rgba(0, 128, 0, 0.89);
+      }
+    </style>
+  </head>
+  <body>
+    
+
+    <div class="container">
+      <h2>Join a Chat Room</h2>
+      <label for="name">Enter Your Name:</label>
+      <input type="text" id="name" placeholder="Your name..." required autofocus>
+
+      <div class="rooms">
+          <div class="room" onclick="connectRoom('Horror')">Horror</div>
+          <div class="room" onclick="connectRoom('Mystery')">Mystery</div>
+          <div class="room" onclick="connectRoom('Thriller')">Thriller</div>
+          <div class="room" onclick="connectRoom('Crime')">Crime</div>
+          <div class="room" onclick="connectRoom('Sci-Fi')">Sci-Fi</div>
+          <div class="room" onclick="connectRoom('Adventure')">Adventure</div>
+          <div class="room" onclick="connectRoom('Fantasy')">Fantasy</div>
+          <div class="room" onclick="connectRoom('Romance')">Romance</div>
+          <div class="room" onclick="connectRoom('History')">History</div>
+          <div class="room" onclick="connectRoom('Action')">Action</div>
+      </div>
+  </div>
+
+
+<div class="private">
+    <div class="private-container">
+        <p class="private-paragraph">Create Private Room</p>
+        <form method="post" id="createroom">
+        <button id="createRoomLink" class="private-btn">Create</button>
+      </form>
+
+
+    </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      var usernameInput = document.getElementById("name");
+      var createRoomForm = document.getElementById("createroom");
+
+      createRoomForm.addEventListener("submit", function(event) {
+          var username = usernameInput.value.trim();
+
+          if (!username) {
+              alert("Please enter your name before creating a room.");
+              event.preventDefault(); // Prevent form submission if no username
+              return;
+          }
+          
+          // Update the form's action dynamically
+          createRoomForm.action = `/createroom?username=${encodeURIComponent(username)}`;
+      });
+  });
+</script>
+
+  <script>
+    var username;
+      
+      function connectRoom(roomname) {
+           username = document.getElementById("name").value.trim();
+           console.log(username);
+          if (!username) {
+              alert("Please enter your name before joining a chatroom.");
+              return;
+          }
+          window.location.href = `/chatroom?roomname=${roomname}&username=${username}`;
+      }
+  </script>
+
+  <script>
+    let btn = document.getElementsByClassName("private-btn")[0];
+    btn.addEventListener("click",()=>{
+   
+let room = console.log(generateRoomName()); // Example output: room_20250313123045_4827
+
+window.location.href = `/chatroom?roomname=${roomname}&username=${username}`;
+    });
+
+    function generateRoomName() {
+    const now = new Date();
+    const dateTime = now.toISOString().replace(/[-T:.Z]/g, ""); // Format: YYYYMMDDHHMMSS
+    const randomNum = Math.floor(1000 + Math.random() * 9000); // 4-digit random number
+    return `room${dateTime}${randomNum}`;
+}
+  </script>
+
+  </body>
+</html>

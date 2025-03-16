@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room ID</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .room-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .room-id {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2E7D32;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        .copy-btn {
+            background-color: #2E7D32;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #1b5e20;
+        }
+
+        @media (max-width: 300px) {
+            .room-container {
+                padding: 15px;
+            }
+
+            .room-id {
+                font-size: 18px;
+            }
+
+            .copy-btn {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="room-container">
+        <p class="room-id" id="roomId"><%= roomName %></p>
+        <button class="copy-btn" onclick="copyRoomId()">Copy</button>
+    </div>
+
+    <script>
+        function copyRoomId() {
+            const roomIdText = document.getElementById("roomId").innerText;
+            navigator.clipboard.writeText(roomIdText).then(() => {
+                alert("Room ID copied to clipboard!");
+            }).catch(err => {
+                console.error("Error copying Room ID:", err);
+            });
+        }
+    </script>
+
+</body>
+</html>

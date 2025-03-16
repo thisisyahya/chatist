@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Name</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .room-info {
+            background-color: #e0ffe0;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .readonly {
+            background-color: #ddd;
+            color: #333;
+            pointer-events: none;
+        }
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Select Your Name</h2>
+        <p class="room-info">You are joining the room: <strong><%= roomname %></strong></p>
+        <form id="selectNameForm" method="get">
+            <input type="hidden" id="roomname" name="roomname" value="<%= roomname %>">
+            <input type="text" id="name" name="username" placeholder="Enter your name">
+            <button type="submit">Proceed</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var nameInput = document.getElementById("name");
+            var selectNameForm = document.getElementById("selectNameForm");
+
+            selectNameForm.addEventListener("submit", function(event) {
+                var username = nameInput.value.trim();
+                var roomname = document.getElementById("roomname").value;
+
+                if (!username) {
+                    alert("Please enter your name before proceeding.");
+                    event.preventDefault(); // Prevent form submission if no username
+                    return;
+                }
+
+                // Update the action dynamically to include username and roomname
+                selectNameForm.action = `/room?username=${encodeURIComponent(username)}&roomname=${encodeURIComponent(roomname)}`;
+            });
+        });
+    </script>
+
+</body>
+</html>
