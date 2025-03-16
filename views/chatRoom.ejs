@@ -235,7 +235,7 @@
         }
         @media(width<=448px){
             .chat{
-                height:calc(100vh - 68px);            }
+                height:calc(100vh - 90px);            }
         }
     </style>
 
@@ -253,7 +253,7 @@
         var roomIdText = document.getElementById("roomid").innerText;
           
         // Copy to clipboard
-        navigator.clipboard.writeText(`https://dashboard.render.com/selectname?roomname=${roomIdText}`).then(function() {
+        navigator.clipboard.writeText(`https://chatist-3bw0.onrender.com/selectname?roomname=${roomIdText}`).then(function() {
             alert("Room ID copied: " + roomIdText);
         }).catch(function(err) {
             console.error("Could not copy text: ", err);
