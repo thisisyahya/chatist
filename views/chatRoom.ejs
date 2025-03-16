@@ -204,7 +204,8 @@
         }
 
         /* Chat Input Section */
-        #chat-container>input,
+        #chat-container>input,send kr naa
+
         #chat-container>button {
             margin-top: 10px;
         }
@@ -244,7 +245,7 @@
 
 <section class="room">
     <p class="roomid" id="roomid"><%= roomname %></p>
-    <i class="ri-file-copy-line copy-btn"></i>
+    <i class="ri-file-copy-line copy-btn">(send roomId)</i>
 </section>
 
 <script>
@@ -284,6 +285,26 @@
     </div>
     </div>
 </div>
+
+
+
+<script>
+window.addEventListener("beforeunload", function (event) {
+  event.preventDefault(); // Required for Chrome
+  event.returnValue = ""; // Required for standard behavior
+
+  // Custom confirmation dialog
+  const confirmation = confirm("If you reload, you will be disconnected.\n\nDo you want to reload?");
+
+  if (!confirmation) {
+    history.pushState(null, "", location.href); // Prevents reload
+    throw new Error("Reload prevented"); // Stop further execution
+  }
+});
+
+</script>
+
+
 
 
 
