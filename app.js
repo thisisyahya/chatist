@@ -11,7 +11,7 @@ require('dotenv').config(); // Load environment variables
 const { usersArray } = require("./utils/rooms"); // Ensure correct variable is imported
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+const genAI = new GoogleGenerativeAI("AIzaSyAJ9Gb69tYaRXeK34oQl8Ze3OVwP5Th9WY");
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 // MongoDB Connection
